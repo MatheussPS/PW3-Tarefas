@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/tarefas")
 public class TarefaController {
@@ -39,7 +40,7 @@ public class TarefaController {
     }
 
     @PostMapping("/criar")
-    public ResponseEntity<Tarefa> criarTarefa(@RequestBody TarefaResponseDTO model){
+    public ResponseEntity<Tarefa> criarTarefa(@RequestBody TarefaRequestDTO model){
         return ResponseEntity.status(HttpStatus.OK).body(service.createTarefa(model));
     }
 }

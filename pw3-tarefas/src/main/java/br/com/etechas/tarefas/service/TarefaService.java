@@ -6,12 +6,13 @@ import br.com.etechas.tarefas.dto.TarefaRequestDTO;
 import br.com.etechas.tarefas.dto.TarefaResponseDTO;
 import br.com.etechas.tarefas.entity.Tarefa;
 import br.com.etechas.tarefas.enums.StatusEnum;
+import br.com.etechas.tarefas.exception.DateIsBeforeLocalDateNowException;
 import br.com.etechas.tarefas.mapper.TarefaMapper;
 import br.com.etechas.tarefas.repository.TarefaRepository;
-import org.hibernate.type.TrueFalseConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -53,9 +54,13 @@ public class TarefaService {
         return repository.save(tarefa);
     }
 
-    public Tarefa createTarefa(TarefaResponseDTO model) {
+    public Tarefa createTarefa(TarefaRequestDTO model) {
 
+        if(model.dataLimite().isBefore(LocalDate.now()) ){
+            throw new DateIsBeforeLocalDateNowException();
+        }
         Tarefa tarefa = tarefaMapper.toResponseTarefa(model);
+        tarefa.setStatus(StatusEnum.PENDING);
         
         return repository.save(tarefa);
     }

@@ -5,11 +5,9 @@ import br.com.etechas.tarefas.enums.StatusEnum;
 import java.time.LocalDate;
 
 public record TarefaRequestDTO(
-        Long id,
         String titulo,
         String descricao,
         String responsavel,
-        LocalDate dataLimite,
-        StatusEnum status
+        LocalDate dataLimite
 ) {
 }

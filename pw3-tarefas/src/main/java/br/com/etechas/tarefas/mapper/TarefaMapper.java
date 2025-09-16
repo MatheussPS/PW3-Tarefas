@@ -1,5 +1,6 @@
 package br.com.etechas.tarefas.mapper;
 
+import br.com.etechas.tarefas.dto.TarefaRequestDTO;
 import br.com.etechas.tarefas.dto.TarefaResponseDTO;
 import br.com.etechas.tarefas.entity.Tarefa;
 import org.mapstruct.Mapper;
@@ -14,6 +15,6 @@ public interface TarefaMapper {
 
     List<TarefaResponseDTO> toResponseDTOList(List<Tarefa> tarefa);
 
-    Tarefa toResponseTarefa(TarefaResponseDTO tarefa);
+    Tarefa toResponseTarefa(TarefaRequestDTO tarefa);
 
 }
