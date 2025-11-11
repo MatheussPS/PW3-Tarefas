@@ -1,0 +1,34 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="mb-3">
+        <label for="username" class="form-label">Usuário:</label>
+        <input
+            type="text"
+            class="form-control w-25"
+            id="username"
+            formControlName="username"
+            [class.is-invalid]="loginForm.get('username')?.invalid &&
+    loginForm.get('username')?.touched">
+        <div class="invalid-feedback" *ngIf="loginForm.get('username')?.invalid &&
+    loginForm.get('username')?.touched">
+        Usuário é obrigatório.
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="password" class="form-label">Senha:</label>
+        <input
+            type="password"
+            class="form-control w-25"
+            id="password"
+            formControlName="password"
+            [class.is-invalid]="loginForm.get('password')?.invalid &&
+    loginForm.get('password')?.touched">
+        <div class="invalid-feedback" *ngIf="loginForm.get('password')?.invalid &&
+    loginForm.get('password')?.touched">
+            Senha é obrigatória.
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary me-1"
+    [disabled]="loginForm.invalid">Logar</button>
+</form>

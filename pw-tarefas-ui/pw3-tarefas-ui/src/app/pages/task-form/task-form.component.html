@@ -1,0 +1,28 @@
+<div class="form-container">
+  <h2>{{ id ? 'Editar Tarefa' : 'Nova Tarefa' }}</h2>
+
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <label for="titulo">Título</label>
+    <input id="titulo" formControlName="titulo" type="text" required />
+
+    <label for="descricao">Descrição</label>
+    <textarea id="descricao" formControlName="descricao"></textarea>
+
+    <label for="responsavel">Responsável</label>
+    <input id="responsavel" formControlName="responsavel" type="text" required />
+
+    <label for="dataLimite">Data Limite</label>
+    <input id="dataLimite" formControlName="dataLimite" type="date" required />
+
+    <label for="status">Status</label>
+    <select id="status" formControlName="status">
+      <option value="PENDING">Pendente</option>
+      <option value="IN_PROGRESS">Em Andamento</option>
+      <option value="COMPLETED">Concluída</option>
+    </select>
+
+    <button type="submit" [disabled]="taskForm.invalid">
+      {{ id ? 'Atualizar' : 'Salvar' }}
+    </button>
+  </form>
+</div>
